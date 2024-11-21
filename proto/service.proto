@@ -1,0 +1,15 @@
+syntax="proto3";
+package pb;
+import "google/protobuf/timestamp.proto";
+option go_package = "github.com/vietquan-37/grpc-stream-example/pb";
+message NotificationRequest {
+string user_id=1;
+}
+message NotificationResponse{
+    string user_id=1;
+    string content=2;
+    google.protobuf.Timestamp create_at=3;
+}
+service NotificationService{
+rpc GetNotification(NotificationRequest)returns(stream NotificationResponse){}
+}
